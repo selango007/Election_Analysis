@@ -45,16 +45,6 @@ winning_percentage = 0
 winning_candidate = ""
 
 
-# Using the with statement open the file as a text file.
-with open(file_to_save, "w") as txt_file:
-
-    # Write some data to the file.
-    txt_file.write("Counties in Election\n----------------\nArapahoe\nDenver\nJefferson")
-
-# Open the electopn data file and read.
-# with open(file_to_load) as election_data:
-#    print(election_data)
-
 # Read the file object with the reader function.
 with open(file_to_load, "r") as election_data:
     file_reader = csv.reader(election_data)
@@ -111,6 +101,24 @@ with open(file_to_load, "r") as election_data:
     f"Winning Percentage: {winning_percentage:.1f}%\n"
     f"-------------------------\n")
     print(winning_candidate_summary)
+
+# Using the with statement open the file as a text file.
+with open(file_to_save, "w") as txt_file:
+
+    # Print the final vote count to the terminal.
+    election_results = (
+        f"\nElection Results\n"
+        f"-------------------------\n"
+        f"Total Votes: {total_votes:,}\n")
+
+    print(election_results, end="")
+    
+    # Save the final vote count to the text file.
+    txt_file.write(election_results)
+    txt_file.write(winning_candidate_summary)
+# Open the electopn data file and read.
+# with open(file_to_load) as election_data:
+#    print(election_data)
 
 # Close the file.
 election_data.close()
